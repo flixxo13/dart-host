@@ -15,7 +15,7 @@ class AppController extends ChangeNotifier {
   bool _isReady = false;
   bool get isReady => _isReady;
 
-  Future<void> initialize() async {
+  /*Future<void> initialize() async {
     await commentary.load();
     await voice.initialize();
     ai.initialize();
@@ -23,7 +23,23 @@ class AppController extends ChangeNotifier {
     _isReady = true;
     notifyListeners();
     await voice.speak('Dart Host bereit. Sage Hey Darts um zu starten.');
-  }
+  }*/
+
+Future<void> initialize() async {
+  await commentary.load();
+  await voice.initialize();
+  ai.initialize();
+  voice.onResult = _handleVoiceInput;
+  _isReady = true;
+  notifyListeners();
+  
+  // Wichtig: Wir warten, bis er fertig gesprochen hat, und starten DANN den Listener
+  await voice.speak('Dart Host bereit. Sage Hey Darts um zu starten.');
+  
+  // Hier fehlte der Start-Befehl!
+  await voice.startListening(); 
+}
+
 
   Future<void> _handleVoiceInput(String input) async {
     debugPrint('Voice Input: "$input"');
