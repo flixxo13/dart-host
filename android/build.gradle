@@ -1,11 +1,13 @@
 buildscript {
-    ext.kotlin_version = '1.9.10'
+    // 1. Kotlin auf 2.2.0 anheben, damit die Metadaten-Fehler verschwinden
+    ext.kotlin_version = '2.2.0'
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.4'
+        // 2. Android Gradle Plugin auf einen kompatiblen Stand bringen
+        classpath 'com.android.tools.build:gradle:8.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
