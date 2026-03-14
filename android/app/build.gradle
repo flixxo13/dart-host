@@ -22,23 +22,26 @@ if (flutterRoot != null) {
 
 android {
     namespace "com.example.dart_host"
-    compileSdkVersion 34
+    // Erhöht auf 36 wegen flutter_tts Anforderungen
+    compileSdkVersion 36
     ndkVersion "25.1.8937393"
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
         applicationId "com.example.dart_host"
+        // Bleibt auf 24 (Minimum für flutter_tts)
         minSdkVersion 24
-        targetSdkVersion 34
+        // Erhöht auf 36 passend zur compileSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
